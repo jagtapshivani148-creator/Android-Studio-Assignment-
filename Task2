@@ -1,3 +1,27 @@
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: ProfileCard(),
+        ),
+      ),
+    );
+  }
+}
+
 class ProfileCard extends StatelessWidget {
   const ProfileCard({super.key});
 
@@ -6,22 +30,83 @@ class ProfileCard extends StatelessWidget {
     return Container(
       width: 280,
       padding: const EdgeInsets.all(16),
+
       decoration: BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.circular(16),
+        color: Colors.blue.shade800,
+        borderRadius: BorderRadius.circular(25),
       ),
+
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text('Your Name',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)),
-          const Text('Your Course', style: TextStyle(color: Colors.white70)),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [Text('Age'), Text('City'), Text('Year')],
+
+          // Name
+          const Text(
+            'Shivani Jagtap',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
+
+          const SizedBox(height: 20),
+
+          // Course
+          const Text(
+            'Civil Engineering',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.lightBlueAccent,
+            ),
+          ),
+
+          const SizedBox(height: 50),
+
+          // Age, City and Year
+          Row(
+            children: [
+              infoBox('Age', '18'),
+              infoBox('City', 'Pune'),
+              infoBox('Year', 'First'),
+            ],
+          ),
+
+          const SizedBox(height: 20),
         ],
+      ),
+    );
+  }
+
+  Widget infoBox(String title, String value) {
+    return Expanded(
+      child: Container(
+        margin: const EdgeInsets.all(3),
+        padding: const EdgeInsets.symmetric(
+          vertical: 12,
+          horizontal: 2,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              value,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 12),
+            ),
+          ],
+        ),
       ),
     );
   }
